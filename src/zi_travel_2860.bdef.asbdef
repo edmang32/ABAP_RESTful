@@ -1,0 +1,86 @@
+managed;
+//strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+define behavior for ZI_TRAVEL_2860 alias Travel //<alias_name>
+implementation in class zbp_i_travel_2860 unique
+persistent table ztb_travel_2860
+with additional save
+lock master
+authorization master ( instance )
+etag master last_changed_at
+{
+  //Administrative Fields: readonly
+  field ( readonly ) last_changed_at, last_changed_by, created_at, created_by;
+  //Mandatory Fields: required to create Travel
+  field ( mandatory : create ) travel_id, agency_id, overall_status, booking_fee, currency_code;
+  //Dynamic Field Control
+  field ( features : instance ) travel_id, overall_status;
+  create;
+  update;
+  delete;
+
+  //Validations
+  validation validateCustomer on save { create; field customer_id; }
+  validation validateDates on save { create; field begin_date, end_date; }
+  validation validateStatus on save { create; field overall_status; }
+
+  //determinations
+
+
+  //Actions
+  action ( features : instance ) acceptTravel result [1] $self;
+  action ( features : instance ) rejectTravel result [1] $self;
+  action createTravelByTemplate result [1] $self;
+
+  association _Booking { create ( features : instance ); }
+
+  mapping for ZTB_TRAVEL_2860 corresponding;
+  //  {
+  //cuando no son iguales
+  //cds element(ZI_TRAVEL_2860) -> persistent table(ztb_travel_2860)
+  //  travel_id = travel_id;
+  //  }
+}
+
+define behavior for ZI_BOOKING_2860 alias Booking //alias <alias_name>
+implementation in class zbp_i_booking_2860 unique
+persistent table ztb_booking_2860
+lock dependent by _Travel
+authorization dependent by _Travel
+etag master last_changed_at
+{
+  field ( readonly ) travel_id;
+  field ( mandatory : create ) booking_id, carrier_id, connection_id, flight_date, booking_status;
+  update;
+  delete;
+  //validations
+  validation validateStatus on save { create; field booking_status; }
+
+  //determinations
+  determination calculateTotalFlightPrice on modify { field flight_price, currency_code; }
+
+  association _Travel;
+  association _BookingSplmnt { create ( features : instance ); }
+
+  mapping for ztb_booking_2860 corresponding;
+}
+
+define behavior for ZI_BOOKINGSUPPL_2860 alias Supplement //alias <alias_name>
+implementation in class zbp_i_bookingsuppl_2860 unique
+with unmanaged save //Managed by Class-Method SAVER-HANDLER
+lock dependent by _Travel
+authorization dependent by _Travel
+etag master last_changed_at
+{
+  field ( readonly ) travel_id, booking_id;
+  field ( mandatory : create ) supplement_id, price;
+  update;
+  delete;
+
+  //determinations
+  determination calculateTotalSupplimPrice on modify { field price, currency_code; }
+
+  association _Travel;
+  association _Booking;
+
+  mapping for ztb_bkngspl_2860 corresponding;
+}

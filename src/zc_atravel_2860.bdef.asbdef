@@ -1,0 +1,27 @@
+projection;
+//strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+
+define behavior for ZC_ATRAVEL_2860 alias TravelApproval //alias <alias_name>
+use etag
+{
+  //Sólo se puede aprobar o rechazar los viajes
+  //  use create;
+  //  use update;
+  //  use delete;
+
+  use action acceptTravel; //Manager Option
+  use action rejectTravel; //Manager Option
+// use action createTravelByTemplate; //Only for user
+
+  use association _Booking { create; }
+}
+
+//No se requiere que tenga accesso sobre la entidad BOOKING
+//define behavior for zc_abooking_2860 alias //alias <alias_name>
+//{
+//  use update;
+//  use delete;
+//
+//  use association _Travel;
+//
