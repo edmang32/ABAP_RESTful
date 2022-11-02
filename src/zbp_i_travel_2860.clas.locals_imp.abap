@@ -231,7 +231,9 @@ CLASS lhc_Travel IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD validateDates.
-    READ ENTITY zi_travel_2860\\Travel
+    READ ENTITIES OF zi_travel_2860
+    IN LOCAL MODE
+    ENTITY TRAVEL
     FIELDS ( begin_date end_date )
     WITH VALUE #( FOR <keyrow> IN keys ( %key = <keyrow>-%key ) )
     RESULT DATA(lt_travel_result).

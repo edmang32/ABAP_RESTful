@@ -73,6 +73,7 @@ etag master last_changed_at
 {
   field ( readonly ) travel_id, booking_id;
   field ( mandatory : create ) supplement_id, price;
+
   update;
   delete;
 
@@ -81,6 +82,7 @@ etag master last_changed_at
 
   association _Travel;
   association _Booking;
+
 
   mapping for ztb_bkngspl_2860 corresponding;
 }
