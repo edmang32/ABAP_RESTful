@@ -10,7 +10,11 @@ CLASS zcl_virt_elmnt_2860 DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zcl_virt_elmnt_2860 IMPLEMENTATION.
+
+
+CLASS ZCL_VIRT_ELMNT_2860 IMPLEMENTATION.
+
+
   METHOD if_sadl_exit_calc_element_read~get_calculation_info.
     IF iv_entity = 'ZC_TRAVEL_2860'.
       LOOP AT it_requested_calc_elements INTO DATA(ls_calc_elements).
@@ -20,6 +24,7 @@ CLASS zcl_virt_elmnt_2860 IMPLEMENTATION.
       ENDLOOP.
     ENDIF.
   ENDMETHOD.
+
 
   METHOD if_sadl_exit_calc_element_read~calculate.
     CONSTANTS: c_p90 TYPE p DECIMALS 2 VALUE '0.90'.

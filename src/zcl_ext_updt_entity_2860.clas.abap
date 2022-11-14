@@ -13,7 +13,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_ext_updt_entity_2860 IMPLEMENTATION.
+CLASS ZCL_EXT_UPDT_ENTITY_2860 IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
     MODIFY ENTITIES OF zi_travel_2860
            ENTITY Travel
