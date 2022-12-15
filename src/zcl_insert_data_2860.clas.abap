@@ -5,6 +5,8 @@ CLASS zcl_insert_data_2860 DEFINITION
 
   PUBLIC SECTION.
     INTERFACES if_oo_adt_classrun.
+protected section.
+private section.
 ENDCLASS.
 
 

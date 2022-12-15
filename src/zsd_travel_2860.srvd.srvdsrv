@@ -1,4 +1,4 @@
-@EndUserText.label: 'Travel'
+@EndUserText.label: 'Service Definition Travel'
 define service ZSD_TRAVEL_2860 {
   expose ZC_TRAVEL_2860 as Travel;
   expose ZC_BOOKING_2860 as Booking;

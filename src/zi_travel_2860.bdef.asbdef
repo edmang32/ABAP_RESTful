@@ -1,6 +1,6 @@
 managed;
 //strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
-define behavior for ZI_TRAVEL_2860 alias Travel //<alias_name>
+define behavior for ZI_TRAVEL_2860 alias Travel
 implementation in class zbp_i_travel_2860 unique
 persistent table ztb_travel_2860
 with additional save
@@ -14,8 +14,11 @@ etag master last_changed_at
   field ( mandatory : create ) travel_id, agency_id, overall_status, booking_fee, currency_code;
   //Dynamic Field Control
   field ( features : instance ) travel_id, overall_status;
+
   create;
+
   update;
+
   delete;
 
   //Validations
@@ -64,7 +67,7 @@ etag master last_changed_at
   mapping for ztb_booking_2860 corresponding;
 }
 
-define behavior for ZI_BOOKINGSUPPL_2860 alias Supplement //alias <alias_name>
+define behavior for ZI_BOOKINGSUPPL_2860 alias Supplement
 implementation in class zbp_i_bookingsuppl_2860 unique
 with unmanaged save //Managed by Class-Method SAVER-HANDLER
 lock dependent by _Travel

@@ -1,4 +1,6 @@
 CLASS zbp_i_booking_2860 DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_travel_2860.
+protected section.
+private section.
 ENDCLASS.
 
 

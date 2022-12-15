@@ -44,6 +44,16 @@ CLASS lsc_supplement IMPLEMENTATION.
 
     IF NOT update-supplement IS INITIAL.
       lt_supplements = CORRESPONDING #( update-supplement ).
+      LOOP AT lt_supplements ASSIGNING FIELD-SYMBOL(<fs_supplements>).
+        IF <fs_supplements>-supplement_id IS INITIAL.
+          SELECT SINGLE FROM ztb_bkngspl_2860
+          FIELDS supplement_id
+          WHERE travel_id = @<fs_supplements>-travel_id AND
+                booking_id = @<fs_supplements>-booking_id AND
+                booking_supplement_id = @<fs_supplements>-booking_supplement_id
+          INTO @<fs_supplements>-supplement_id.
+        ENDIF.
+      ENDLOOP.
       lv_op_type = lsc_supplement=>update.
     ENDIF.
 

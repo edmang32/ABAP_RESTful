@@ -18,7 +18,6 @@ annotate view ZC_TRAVEL_2860 with
              type: #IDENTIFICATION_REFERENCE,
             label: 'Travel',
          position: 10 },
-
            {   id: 'Booking',
           purpose: #STANDARD,
              type: #LINEITEM_REFERENCE,
@@ -116,7 +115,6 @@ annotate view ZC_TRAVEL_2860 with
   @EndUserText.label: 'With Discount 10%'
   DiscountPrice;
 }
-
 
 
 

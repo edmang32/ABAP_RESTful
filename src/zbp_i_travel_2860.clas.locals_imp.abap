@@ -11,8 +11,8 @@ CLASS lhc_Travel DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS:
       validateCustomer FOR VALIDATE ON SAVE IMPORTING keys FOR Travel~validateCustomer,
-      validateDates FOR VALIDATE ON SAVE IMPORTING keys FOR Travel~validateDates,
-      validateStatus FOR VALIDATE ON SAVE IMPORTING keys FOR Travel~validateStatus.
+      validateDates    FOR VALIDATE ON SAVE IMPORTING keys FOR Travel~validateDates,
+      validateStatus   FOR VALIDATE ON SAVE IMPORTING keys FOR Travel~validateStatus.
 
     METHODS
       get_instance_authorizations FOR INSTANCE AUTHORIZATION IMPORTING keys
@@ -48,7 +48,7 @@ CLASS lhc_Travel IMPLEMENTATION.
 
   METHOD get_instance_authorizations.
 
-    DATA(lv_auth) = COND #( WHEN cl_abap_context_info=>get_user_technical_name( ) EQ 'CB9980002860'
+    DATA(lv_auth) = COND #( WHEN cl_abap_context_info=>get_user_technical_name( ) EQ 'CB9980001573'
     THEN if_abap_behv=>auth-allowed
     ELSE if_abap_behv=>auth-unauthorized ).
 
@@ -132,6 +132,8 @@ CLASS lhc_Travel IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD createTravelByTemplate.
+
+*** Available Variables ***
 * Keys[ 1 ]-
 * result[ 1 ]-
 * mapped-

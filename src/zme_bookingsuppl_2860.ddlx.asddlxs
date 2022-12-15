@@ -37,7 +37,7 @@ annotate view ZC_BOOKINGSUPPL_2860 with
    entity: {name: '/DMO/I_SUPPLEMENT', 
   element: 'SupplementID' },
   additionalBinding: [
-  { localElement: 'Price',        element: 'Price' },
+  { localElement: 'Price',        element: 'price' },
   { localElement: 'CurrencyCode', element: 'CurrencyCode' }] }]
   SupplementID;
 
